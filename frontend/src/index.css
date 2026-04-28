@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neonBlue: #00f3ff;
+  --color-neonPurple: #b026ff;
+  --color-neonGreen: #39ff14;
+  --color-neonPink: #ff00dc;
+  --color-boardroomDark: #0a0a0f;
+}
+
+@layer base {
+  body {
+    @apply bg-boardroomDark text-white overflow-hidden m-0 p-0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+  }
+  
+  .glass-panel-heavy {
+    @apply bg-black/40 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0f;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0f;
+}
+
