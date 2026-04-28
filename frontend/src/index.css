@@ -1,0 +1,137 @@
+/* 
+  BOARDROOM.AI - ULTIMATE CINEMATIC OVERRIDE 
+  Guaranteed 100% Reliable Design System
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600;900&family=JetBrains+Mono&display=swap');
+
+:root {
+  --cyan: #00f2ff;
+  --purple: #7000ff;
+  --bg-dark: #020408;
+  --glass: rgba(5, 8, 15, 0.85);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+}
+
+/* THE HUD LAYER */
+.hud-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px;
+}
+
+/* THE PANEL SYSTEM */
+.hud-panel {
+  pointer-events: auto;
+  background: var(--glass);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 242, 255, 0.2);
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.hud-panel::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px; width: 20px; height: 20px;
+  border-top: 2px solid var(--cyan);
+  border-left: 2px solid var(--cyan);
+}
+
+/* THE TYPOGRAPHY */
+.title-glow {
+  font-size: 6rem;
+  font-weight: 900;
+  letter-spacing: -4px;
+  margin: 0;
+  color: var(--cyan);
+  text-shadow: 0 0 40px rgba(0, 242, 255, 0.7);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 1.2rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 10px;
+}
+
+/* THE INPUT HUD */
+.center-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  background: rgba(2, 4, 8, 0.7);
+  backdrop-filter: blur(20px);
+  padding: 80px 60px;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 242, 255, 0.1);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+}
+
+.cyber-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--cyan);
+  padding: 20px;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s;
+  text-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+}
+
+.cyber-input::placeholder {
+  color: rgba(255,255,255,0.1);
+}
+
+.cyber-input:focus {
+  text-shadow: 0 0 30px rgba(0, 242, 255, 0.6);
+  border-bottom-width: 3px;
+}
+
+.cyber-btn {
+  background: var(--cyan);
+  color: black;
+  border: none;
+  padding: 18px 45px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cyber-btn:hover {
+  background: white;
+  box-shadow: 0 0 40px rgba(255,255,255,0.5);
+  transform: scale(1.05);
+}
