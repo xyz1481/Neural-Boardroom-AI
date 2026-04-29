@@ -163,7 +163,8 @@ async def create_checkout(request: StartupRequest):
             "selectedAgents": selected_agents,
         }
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    transport = httpx.AsyncHTTPTransport(local_address="0.0.0.0")
+    async with httpx.AsyncClient(transport=transport, timeout=30.0) as client:
         try:
             response = await client.post(
                 f"{locus_api_url}/checkout/sessions",
