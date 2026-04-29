@@ -163,7 +163,7 @@ async def create_checkout(request: StartupRequest):
             "selectedAgents": selected_agents,
         }
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=30.0) as client:
         try:
             response = await client.post(
                 f"{locus_api_url}/checkout/sessions",
@@ -196,8 +196,8 @@ async def create_checkout(request: StartupRequest):
                 "selectedAgents": selected_agents,
             }
         except Exception as e:
-            print(f"Internal Error calling Locus: {str(e)}")
-            return {"error": str(e), "sessionId": None, "amount": checkout_amount}
+            print(f"Internal Error calling Locus API at {locus_api_url}/checkout/sessions : {repr(e)}")
+            return {"error": repr(e), "sessionId": None, "amount": checkout_amount}
 
 @app.post("/simulate")
 async def run_startup(request: StartupRequest):
