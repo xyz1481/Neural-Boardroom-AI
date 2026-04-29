@@ -1,15 +1,26 @@
 import json
 from langchain_google_genai import ChatGoogleGenerativeAI
-from config import GEMINI_MODEL, GEMINI_API_KEY
+from langchain_groq import ChatGroq
+from config import GEMINI_MODEL, GEMINI_API_KEY, GROQ_API_KEY, GROQ_MODEL
 from tools.web_search import web_search
 from graph.state import StartupState
 
 def cmo_node(state: StartupState) -> dict:
-    llm = ChatGoogleGenerativeAI(
-        model=GEMINI_MODEL,
-        google_api_key=GEMINI_API_KEY,
-        temperature=0.7
-    )
+    # Use Groq if key is available, otherwise fallback to Gemini
+    if GROQ_API_KEY and GROQ_API_KEY != "YOUR_GROQ_API_KEY_HERE":
+        llm = ChatGroq(
+            model=GROQ_MODEL,
+            groq_api_key=GROQ_API_KEY,
+            temperature=0.8
+        )
+        print("[CMO] Using Groq (Llama 3) for marketing strategy...")
+    else:
+        llm = ChatGoogleGenerativeAI(
+            model=GEMINI_MODEL,
+            google_api_key=GEMINI_API_KEY,
+            temperature=0.7
+        )
+        print("[CMO] Using Gemini (Fallback) for marketing strategy...")
     
     marketing_budget = state.get("budget_allocation", {}).get("marketing", 0)
     
@@ -52,7 +63,7 @@ def cmo_node(state: StartupState) -> dict:
         step_log = {
             "agent": "CMO",
             "type": "propose",
-            "text": data.get("summary_text", "I've devised a go-to-market strategy leveraging current trends.")
+            "text": f"{data.get('summary_text', '')}\n\n{data.get('marketing_plan', '')}"
         }
 
         return {

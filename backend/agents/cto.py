@@ -47,7 +47,7 @@ def cto_node(state: StartupState) -> dict:
         step_log = {
             "agent": "CTO",
             "type": "propose",
-            "text": data.get("summary_text", "I've structured a scalable tech stack for our MVP.")
+            "text": f"{data.get('summary_text', '')}\n\n{data.get('tech_plan', '')}"
         }
 
         return {

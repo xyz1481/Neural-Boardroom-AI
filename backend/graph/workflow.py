@@ -10,6 +10,7 @@ from agents.cfo import cfo_node          # absolute from backend/ root
 from agents.cto import cto_node
 from agents.cmo import cmo_node
 from agents.ceo import ceo_node
+from agents.researcher import researcher_node
 
 
 def build_workflow():
@@ -18,13 +19,17 @@ def build_workflow():
     workflow = StateGraph(StartupState)
 
     # ── Nodes ─────────────────────────────────────────────────
+    workflow.add_node("researcher", researcher_node)
     workflow.add_node("cfo", cfo_node)
     workflow.add_node("cto", cto_node)
     workflow.add_node("cmo", cmo_node)
     workflow.add_node("ceo", ceo_node)
 
     # ── Edges ─────────────────────────────────────────────────
-    workflow.set_entry_point("cfo")
+    workflow.set_entry_point("researcher")
+
+    # Researcher → CFO
+    workflow.add_edge("researcher", "cfo")
 
     # CFO → CTO and CMO (fan-out)
     workflow.add_edge("cfo", "cto")

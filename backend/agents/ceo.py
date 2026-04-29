@@ -36,7 +36,8 @@ def ceo_node(state: StartupState) -> dict:
         f"Financial Plan: {state.get('financial_plan', 'N/A')}\n"
         f"Tech Plan: {state.get('tech_plan', 'N/A')}\n"
         f"Marketing Plan: {state.get('marketing_plan', 'N/A')}\n"
-        f"Competitor Data:\n{search_results}"
+        f"Competitor Data (Simple Search):\n{search_results}\n"
+        f"Deep Market Research (CrewAI):\n{state.get('research_data', 'N/A')}"
     )
 
     try:
@@ -57,7 +58,7 @@ def ceo_node(state: StartupState) -> dict:
         step_log = {
             "agent": "CEO",
             "type": "resolution",
-            "text": data.get("summary_text", "Based on the team's analysis, we have our strategy.")
+            "text": f"{data.get('summary_text', '')}\n\n{data.get('final_decision', '')}"
         }
 
         # We encode the hologram data right in the decision to pass to frontend easily

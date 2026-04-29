@@ -11,10 +11,12 @@ class StartupState(TypedDict, total=False):
     # ── Inputs ────────────────────────────────────────────────
     idea: str
     total_budget: float
+    selected_agents: list[str]
 
     # ── CFO outputs ───────────────────────────────────────────
     budget_allocation: dict[str, Any]   # { marketing, tech, operations }
     financial_plan: str
+    research_data: str
 
     # ── CTO output ────────────────────────────────────────────
     tech_plan: str

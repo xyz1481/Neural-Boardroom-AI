@@ -31,7 +31,8 @@ def cfo_node(state: StartupState) -> dict:
     prompt = (
         f"{system_prompt}\n\n"
         f"Idea: {state['idea']}\n"
-        f"Total Budget: ${state['total_budget']}"
+        f"Total Budget: ${state['total_budget']}\n"
+        f"Market Research (Deep Analysis): {state.get('research_data', 'No research available.')}"
     )
 
     try:
@@ -54,7 +55,7 @@ def cfo_node(state: StartupState) -> dict:
         step_log = {
             "agent": "CFO",
             "type": "evaluate",
-            "text": data.get("summary_text", "I have allocated the budget to secure our runway.")
+            "text": f"{data.get('summary_text', '')}\n\n{data.get('financial_plan', '')}"
         }
 
         # Return only this node's new step — operator.add in state will concatenate

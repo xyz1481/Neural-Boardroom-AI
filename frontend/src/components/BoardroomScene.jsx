@@ -9,28 +9,26 @@ import { DecisionHologram } from './DecisionHologram';
 export function BoardroomScene({ activeAgent, simulationState, decision }) {
   return (
     <Canvas
-      camera={{ position: [0, 5, 12], fov: 45 }}
-      gl={{
-        failIfMajorPerformanceCaveat: false,
-        powerPreference: 'default',
-        antialias: true,
-      }}
-      dpr={[1, 1]}
-      onCreated={({ gl }) => {
-        gl.setClearColor('#050508');
-      }}
+      shadows
+      camera={{ position: [0, 8, 18], fov: 40 }}
+      gl={{ antialias: true }}
+      dpr={[1, 2]}
+      style={{ height: '100vh', width: '100vw', position: 'absolute', top: 0, left: 0 }}
     >
-      <color attach="background" args={['#050508']} />
+      <color attach="background" args={['#020408']} />
       
-      {/* Lighting */}
-      <ambientLight intensity={0.2} />
-      <spotLight position={[0, 10, 0]} intensity={2} angle={0.5} penumbra={1} color="#00f3ff" />
+      {/* Cinematic Lighting */}
+      <ambientLight intensity={0.1} />
+      <spotLight position={[0, 15, 0]} intensity={3} angle={0.4} penumbra={1} color="#00f3ff" castShadow />
+      <pointLight position={[10, 5, 10]} intensity={1} color="#7000ff" />
+      <pointLight position={[-10, 5, -10]} intensity={0.5} color="#00f3ff" />
       
       {/* Agents Array */}
-      <AgentNode role="CEO" position={[-4, 1.5, -3]} isActive={activeAgent === 'CEO'} />
-      <AgentNode role="CTO" position={[4, 1.5, -3]} isActive={activeAgent === 'CTO'} />
-      <AgentNode role="CFO" position={[-4, 1.5, 3]} isActive={activeAgent === 'CFO'} />
-      <AgentNode role="CMO" position={[4, 1.5, 3]} isActive={activeAgent === 'CMO'} />
+      <AgentNode role="CEO" position={[-4, 1.5, -3]} isActive={activeAgent?.toLowerCase() === 'ceo'} />
+      <AgentNode role="CTO" position={[4, 1.5, -3]} isActive={activeAgent?.toLowerCase() === 'cto'} />
+      <AgentNode role="CFO" position={[-4, 1.5, 3]} isActive={activeAgent?.toLowerCase() === 'cfo'} />
+      <AgentNode role="CMO" position={[4, 1.5, 3]} isActive={activeAgent?.toLowerCase() === 'cmo'} />
+      <AgentNode role="Researcher" position={[0, 1.5, -5]} isActive={activeAgent?.toLowerCase() === 'researcher'} />
 
       <BoardroomTable />
       

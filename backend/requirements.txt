@@ -1,9 +1,12 @@
 fastapi
 uvicorn
-langgraph
 langchain
 langchain-google-genai
 langchain-community
 tavily-python
 python-dotenv
 pydantic
+web3
+langchain-groq
+crewai
+crewai[tools]

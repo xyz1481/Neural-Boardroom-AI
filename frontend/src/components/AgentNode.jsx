@@ -8,13 +8,14 @@ const AGENT_CONFIG = {
   CTO: { color: '#00f3ff', label: 'CTO - Technology' },   // neonBlue
   CFO: { color: '#39ff14', label: 'CFO - Finance' },      // neonGreen
   CMO: { color: '#ff00dc', label: 'CMO - Marketing' },    // neonPink
+  Researcher: { color: '#ffcc00', label: 'DEEP RESEARCHER' }, // Gold
 };
 
 export function AgentNode({ role, position, isActive }) {
   const meshRef = useRef();
   const auraRef = useRef();
 
-  const config = AGENT_CONFIG[role];
+  const config = AGENT_CONFIG[role] || { color: '#ffffff', label: role };
   const color = new THREE.Color(config.color);
 
   useFrame((state) => {
