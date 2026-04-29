@@ -324,7 +324,7 @@ function App() {
 
   const fetchTreasurySummary = async () => {
     try {
-      const response = await fetch("http://localhost:8000/treasury/summary");
+      const response = await fetch("https://neural-boardroom-aiboardroom-backend.onrender.com/treasury/summary");
       const data = await response.json();
       setTreasurySummary(data);
     } catch (error) {
@@ -366,7 +366,7 @@ function App() {
     setActiveView("home");
 
     try {
-      const response = await fetch("http://localhost:8000/create-checkout", {
+      const response = await fetch("https://neural-boardroom-aiboardroom-backend.onrender.com/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -397,7 +397,7 @@ function App() {
     setActiveView("home");
 
     try {
-      const response = await fetch("http://localhost:8000/simulate", {
+      const response = await fetch("https://neural-boardroom-aiboardroom-backend.onrender.com/simulate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
