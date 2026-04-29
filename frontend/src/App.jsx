@@ -303,6 +303,8 @@ function SettingsView({ onNewSession }) {
   );
 }
 
+const BACKEND_URL = import.meta.env.DEV ? "http://localhost:8000" : "https://neural-boardroom-aiboardroom-backend.onrender.com";
+
 function App() {
   const [simulationState, setSimulationState] = useState("idle");
   const [scenario, setScenario] = useState([]);
@@ -324,7 +326,7 @@ function App() {
 
   const fetchTreasurySummary = async () => {
     try {
-      const response = await fetch("https://neural-boardroom-aiboardroom-backend.onrender.com/treasury/summary");
+      const response = await fetch(`${BACKEND_URL}/treasury/summary`);
       const data = await response.json();
       setTreasurySummary(data);
     } catch (error) {
@@ -366,7 +368,7 @@ function App() {
     setActiveView("home");
 
     try {
-      const response = await fetch("https://neural-boardroom-aiboardroom-backend.onrender.com/create-checkout", {
+      const response = await fetch(`${BACKEND_URL}/create-checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -397,7 +399,7 @@ function App() {
     setActiveView("home");
 
     try {
-      const response = await fetch("https://neural-boardroom-aiboardroom-backend.onrender.com/simulate", {
+      const response = await fetch(`${BACKEND_URL}/simulate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -587,10 +589,35 @@ function App() {
             )}
 
             <button
-              onClick={() => setLocusSessionId(null)}
+              onClick={() => runSimulation(objective, selectedAgents)}
               style={{
                 width: "100%",
                 marginTop: "24px",
+                padding: "12px",
+                background: "#1e293b",
+                border: "1px solid #334155",
+                borderRadius: "8px",
+                color: "#e2e8f0",
+                fontSize: "14px",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#334155";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#1e293b";
+              }}
+            >
+              Skip Payment (Test Mode)
+            </button>
+
+            <button
+              onClick={() => setLocusSessionId(null)}
+              style={{
+                width: "100%",
+                marginTop: "16px",
                 background: "transparent",
                 border: "none",
                 color: "#94a3b8",

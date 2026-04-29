@@ -10,3 +10,4 @@ web3
 langchain-groq
 crewai
 crewai[tools]
+eth-account
