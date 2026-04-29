@@ -135,10 +135,13 @@ async def treasury_summary():
         snapshot["last_payout_result"] = TREASURY_STATE["last_payout_result"]
     return snapshot
 
-# Setup CORS for local dev
+# Setup CORS for production and local dev
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://neural-boardroom-ai.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
