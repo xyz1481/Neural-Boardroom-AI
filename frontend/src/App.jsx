@@ -463,6 +463,7 @@ function App() {
             simulationState={simulationState}
             scenario={scenario}
             startSimulation={startCheckout}
+            bypassSimulation={runSimulation}
             objective={objective}
             activeAgents={activeAgents}
             selectedAgents={selectedAgents}

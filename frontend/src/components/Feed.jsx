@@ -5,6 +5,7 @@ export function Feed({
   simulationState,
   scenario,
   startSimulation,
+  bypassSimulation,
   objective,
   activeAgents,
   selectedAgents,
@@ -53,17 +54,32 @@ export function Feed({
               <button type="button">Web search</button>
               <button type="button">Analysis</button>
             </div>
-            <button
-              className="send-button"
-              onClick={() =>
-                startSimulation(
-                  inputValue || "Launch a SaaS product",
-                  selectedAgents,
-                )
-              }
-            >
-              <ArrowUpRight size={16} />
-            </button>
+            <div style={{ display: "flex", gap: "8px" }}>
+              <button
+                type="button"
+                className="send-button"
+                style={{ background: "#334155", color: "#94a3b8", width: "auto", padding: "0 16px", borderRadius: "100px", fontSize: "12px", fontWeight: "600" }}
+                onClick={() =>
+                  bypassSimulation(
+                    inputValue || "Launch a SaaS product",
+                    selectedAgents,
+                  )
+                }
+              >
+                Bypass Checkout (Test)
+              </button>
+              <button
+                className="send-button"
+                onClick={() =>
+                  startSimulation(
+                    inputValue || "Launch a SaaS product",
+                    selectedAgents,
+                  )
+                }
+              >
+                <ArrowUpRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -199,14 +215,26 @@ export function Feed({
             <button type="button">Web search</button>
             <button type="button">Analysis</button>
           </div>
-          <button
-            className="send-button"
-            onClick={() =>
-              startSimulation(inputValue || objective, selectedAgents)
-            }
-          >
-            <ArrowUpRight size={16} />
-          </button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button
+              type="button"
+              className="send-button"
+              style={{ background: "#334155", color: "#94a3b8", width: "auto", padding: "0 12px", borderRadius: "100px", fontSize: "12px", fontWeight: "600" }}
+              onClick={() =>
+                bypassSimulation(inputValue || objective, selectedAgents)
+              }
+            >
+              Bypass
+            </button>
+            <button
+              className="send-button"
+              onClick={() =>
+                startSimulation(inputValue || objective, selectedAgents)
+              }
+            >
+              <ArrowUpRight size={16} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
